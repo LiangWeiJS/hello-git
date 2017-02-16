@@ -29,6 +29,11 @@
 				div.style.left=e.pageX-dx+"px";
 				div.style.top=e.pageY-dy+"px";
 			}
+			document.addEventListener("mouseup",fnup);
+			function fnup(e){
+				document.addEventListener("mousemove",fnmove);
+				document.addEventListener("mouseup",fnup);
+			}
 		}
 	</script>
 </body>
