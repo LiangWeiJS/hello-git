@@ -24,6 +24,11 @@
 		function fndown(e){
 			var dx=e.pageX-div.offsetLeft;
 			var dy=e.pageY-div.offsetHeight;
+			document.addEventListener("mouseup",fnup);
+			function fnup(e){
+				document.addEventListener("mousemove",fnmove);
+				document.addEventListener("mouseup",fnup);
+			}
 		}
 	</script>
 </body>
