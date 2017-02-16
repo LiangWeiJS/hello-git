@@ -4,6 +4,10 @@
 	<meta charset="UTF-8" />
 	<title>Document</title>
 	<style>
+		body{
+			margin: 0;
+			padding: 0;
+		}
 		#div{
 			width: 100px;
 			height: 100px;
@@ -23,16 +27,16 @@
 		div.addEventListener("mousedown",fndown);
 		function fndown(e){
 			var dx=e.pageX-div.offsetLeft;
-			var dy=e.pageY-div.offsetHeight;
+			var dy=e.pageY-div.offsetTop;
 			document.addEventListener("mousemove",fnmove);
 			function fnmove(e){
-				div.style.left=e.pageX-dx+"px";
-				div.style.top=e.pageY-dy+"px";
+				div.style.left=(e.pageX-dx)+"px";
+				div.style.top=(e.pageY-dy)+"px";
 			}
 			document.addEventListener("mouseup",fnup);
 			function fnup(e){
-				document.addEventListener("mousemove",fnmove);
-				document.addEventListener("mouseup",fnup);
+				document.removeEventListener("mousemove",fnmove);
+				document.removeEventListener("mouseup",fnup);
 			}
 		}
 	</script>
