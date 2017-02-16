@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        #oUl li ul{
+            display: none;
+        }
+        #oUl li ul.show{
+            display: block;
+        }
+        #oUl li ul.hide{
+            display: none;
+        }
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+	<ul id="oUl"></ul>
+</body>
+<script>
+var arr = [
+	{
+	    title : "第一级菜单",
+	    child : [
+	    	{title:"第二集菜单"},
+	        {title:"第二集菜单",
+	        child:[
+	        		{title:"第三集菜单"},
+	        		{title:"第三集菜单",
+	        		child:[
+	        			{title:"第四集菜单"},
+	        			{title:"第四集菜单"},
+	        			{title:"第四集菜单"}
+	        		]
+	        		},
+	        		{title:"第三集菜单"}
+	        	]
+	    	},
+	        {
+	        	title:"第二集菜单",
+	        	child:[
+	        		{title:"第三集菜单"},
+	        		{title:"第三集菜单"}
+	        	]
+	        }
+	    ]
+	},
+	{
+	    title : "第一级菜单",
+	    child : [
+	    	{title:"第二集菜单"},
+	        {title:"第二集菜单",
+	        child:[
+	        		{title:"第三集菜单"},
+	        		{title:"第三集菜单",
+	        		child:[
+	        			{title:"第四集菜单"},
+	        			{title:"第四集菜单"},
+	        			{title:"第四集菜单"}
+	        		]
+	        		},
+	        		{title:"第三集菜单"}
+	        	]
+	    	},
+	        {
+	        	title:"第二集菜单",
+	        	child:[
+	        		{title:"第三集菜单"},
+	        		{title:"第三集菜单"}
+	        	]
+	        }
+	    ]
+	},
+	{
+		title:"第一集菜单",
+		child:[
+			{title:"第二集菜单"},
+			{title:"第二集菜单"}
+		]
+	},
+];
+var oUl=document.getElementById("oUl");
+function fn(myarr,obj){
+	for (var i=0;i<myarr.length;i++) {
+		var li=document.createElement("li");
+		for(var attr in myarr[i]){
+			if(attr=="title"){
+				var h2=document.createElement("h2");
+				h2.innerHTML= myarr[i][attr];
+				li.appendChild(h2);
+			}
+			if(attr=="child"){
+				var ul=document.createElement("ul");
+				ul.className="hide";
+				h2.innerHTML="+"+h2.innerHTML;
+				h2.onclick=function(){
+					if(this.nextElementSibling.className=="hide"){
+						this.nextElementSibling.className="show";
+					}else{
+						this.nextElementSibling.className="hide";
+						
+					}
+				}
+				li.appendChild(ul);
+				fn(myarr[i][attr],ul)
+			}
+		}
+		obj.appendChild(li)
+	}
+}
+fn(arr,oUl);
+</script>
+</html>
