@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+		#div{
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="div">
+		
+	</div>
+	<script type="text/javascript">
+		var div=document.getElementById("div");
+		div.addEventListener("mousedown",fndown);
+		function fndown(e){
+			var dx=e.pageX-div.offsetLeft;
+			var dy=e.pageY-div.offsetHeight;
+		}
+	</script>
+</body>
+</html>
